@@ -10,8 +10,8 @@ public class ConexaoBanco {
     private static final String SENHA = "2005";
 
     public static Connection conectar() throws SQLException {
-        Connection conn =  DriverManager.getConnection(URL, USUARIO, SENHA);
+        Connection connection =  DriverManager.getConnection(URL, USUARIO, SENHA);
         System.out.println("Conexão realizada com sucesso!");
-        return conn;
+        return connection;
     }
 }
