@@ -1,4 +1,5 @@
 package com.antonio.SistemadeAgendamentodeConsultas;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
+    
 }
