@@ -1,8 +1,4 @@
 package com.antonio.SistemadeAgendamentodeConsultas;
-
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,25 +8,29 @@ public abstract class Pessoa {
     protected String nome;
     protected String cpf;
     protected String telefone;
+    protected String email;
     protected LocalDate dataNascimento;
     protected LocalDate dataDeCadastro;
     protected String endereco;
     protected byte statusCadastro;
+
+
     public DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public DateTimeFormatter dataFormatadaComHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String cpf, String telefone, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora) {
+    public Pessoa(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.email = email;
         this.dataNascimento = dataNascimento;
-        this.dataDeCadastro = dataDeCadastro;
+        this.dataDeCadastro = LocalDate.now();
         this.endereco = endereco;
-        this.statusCadastro = statusCadastro;
+        this.statusCadastro = 1;
         this.dataFormatada = dataFormatada;
         this.dataFormatadaComHora = dataFormatadaComHora;
     }

@@ -1,13 +1,10 @@
 package com.antonio.SistemadeAgendamentodeConsultas;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@Getter
-@Setter
+
 public class Paciente extends Pessoa{
 
     private String convenio;
