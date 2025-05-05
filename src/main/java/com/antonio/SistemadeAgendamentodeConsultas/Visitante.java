@@ -12,8 +12,8 @@ public class Visitante extends Pessoa{
     private String motivoDaVisita;
     private LocalDate dataDaVisita;
 
-    public Visitante(int id, String nome, String cpf, String telefone, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora, String motivoDaVisita, LocalDate dataDaVisita) {
-        super(id, nome, cpf, telefone, dataNascimento, dataDeCadastro, endereco, statusCadastro, dataFormatada, dataFormatadaComHora);
+    public Visitante(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora, String motivoDaVisita, LocalDate dataDaVisita) {
+        super(id, nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, dataFormatada, dataFormatadaComHora);
         this.motivoDaVisita = motivoDaVisita;
         this.dataDaVisita = dataDaVisita;
     }

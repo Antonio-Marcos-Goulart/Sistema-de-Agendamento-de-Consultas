@@ -11,8 +11,8 @@ public class Paciente extends Pessoa{
     private Boolean usoMedicacaoContinua;
     private String problemaDeSaude;
 
-    public Paciente(int id, String nome, String cpf, String telefone, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora, String convenio, Boolean usoMedicacaoContinua, String problemaDeSaude) {
-        super(id, nome, cpf, telefone, dataNascimento, dataDeCadastro, endereco, statusCadastro, dataFormatada, dataFormatadaComHora);
+    public Paciente(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, DateTimeFormatter dataFormatada, DateTimeFormatter dataFormatadaComHora, String convenio, Boolean usoMedicacaoContinua, String problemaDeSaude) {
+        super(id, nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, dataFormatada, dataFormatadaComHora);
         this.convenio = convenio;
         this.usoMedicacaoContinua = usoMedicacaoContinua;
         this.problemaDeSaude = problemaDeSaude;
@@ -40,5 +40,10 @@ public class Paciente extends Pessoa{
 
     public void setProblemaDeSaude(String problemaDeSaude) {
         this.problemaDeSaude = problemaDeSaude;
+    }
+
+    @Override
+    public String getDataCadastro() {
+        return "";
     }
 }

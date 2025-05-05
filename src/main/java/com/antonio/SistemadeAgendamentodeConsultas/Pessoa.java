@@ -1,7 +1,13 @@
 package com.antonio.SistemadeAgendamentodeConsultas;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Getter
+@Setter
 public abstract class Pessoa {
 
     protected int id;
@@ -35,85 +41,78 @@ public abstract class Pessoa {
         this.dataFormatadaComHora = dataFormatadaComHora;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
+        if (nome == null || nome.trim().length() < 2) {
+            throw new IllegalArgumentException("Nome inválido. Deve ter pelo menos 2 caracteres."); // Garante que o nome não seja null ou menor que 2 letras
+        }
+        this.nome = nome.trim();
     }
 
     public void setCpf(String cpf) {
+        if (cpf == null || !cpf.matches("\\d{11}")) {
+            throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos."); // Valida se o CPF tem exatamente 11 números
+        }
         this.cpf = cpf;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
     public void setTelefone(String telefone) {
+        if (telefone == null || !telefone.matches("\\d{10,11}")) {
+            throw new IllegalArgumentException("Telefone inválido. Deve conter 10 ou 11 dígitos."); // Aceita telefones com ou sem DDD
+        }
         this.telefone = telefone;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public void setEmail(String email) {
+        if (email == null || !email.matches("^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$")) {
+            throw new IllegalArgumentException("Email inválido."); //Verifica se o email possui um formato válido com @ e domínio
+        }
+        this.email = email;
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
+        if (dataNascimento == null || dataNascimento.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Data de nascimento inválida.");
+        }
         this.dataNascimento = dataNascimento;
     }
 
-    public LocalDate getDataDeCadastro() {
-        return dataDeCadastro;
-    }
-
     public void setDataDeCadastro(LocalDate dataDeCadastro) {
-        if (!dataDeCadastro.equals(LocalDate.now())){
-            throw new IllegalArgumentException("Data inválida!");
+        if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Data inválida!"); // Garante que a data seja a atual
         }
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public byte getStatusCadastro() {
-        return statusCadastro;
+        if (endereco == null || endereco.trim().isEmpty()) {
+            throw new IllegalArgumentException("Endereço não pode ser vazio."); // Evita endereço nulo ou em branco
+        }
+        this.endereco = endereco.trim();
     }
 
     public void setStatusCadastro(byte statusCadastro) {
-        if (String.valueOf(statusCadastro).matches("[0-1]")){
-            throw new IllegalArgumentException("Valor não permitido: " + statusCadastro);
+        if (statusCadastro != 0 && statusCadastro != 1) {
+            throw new IllegalArgumentException("Status de cadastro deve ser 0 (inativo) ou 1 (ativo)."); // Só permite 0 ou 1
         }
         this.statusCadastro = statusCadastro;
     }
 
-
     @Override
     public String toString() {
-        return "Nome: " + nome +
+        return "Id: " + id +
+                "\nNome: " + nome +
                 "\nCPF: " + cpf +
                 "\nTelefone: " + telefone +
+                "\nE-mail: " + email +
                 "\nData de nascimento: " + dataNascimento.format(dataFormatada) +
                 "\nEndereço: " + endereco +
                 "\nData de cadastro: " + dataDeCadastro.format(dataFormatadaComHora) +
                 "\nStatus: " + (statusCadastro == 1 ? "Ativo" : "Inativo"); // Usa o operador ternário para exibir "Ativo" se o status for 1, ou "Inativo" se for diferente
+    }
+
+    public abstract String getDataCadastro();
+
+    public byte getStatus() {
+        return 0;
     }
 }
