@@ -1,4 +1,4 @@
-import com.antonio.SistemadeAgendamentodeConsultas.conexaoBancoDeDados.ConexaoBanco;
+package com.antonio.SistemadeAgendamentodeConsultas.conexaoBancoDeDados;
 
 import java.sql.Connection;
 import java.sql.SQLException;

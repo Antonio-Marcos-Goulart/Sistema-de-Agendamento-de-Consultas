@@ -76,6 +76,8 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    public abstract String getDataCadastro();
+
     public void setDataDeCadastro(LocalDate dataDeCadastro) {
         if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("Data inválida!"); // Garante que a data seja a atual
@@ -88,6 +90,10 @@ public abstract class Pessoa {
             throw new IllegalArgumentException("Endereço não pode ser vazio."); // Evita endereço nulo ou em branco
         }
         this.endereco = endereco.trim();
+    }
+
+    public byte getStatus() {
+        return 1;
     }
 
     public void setStatusCadastro(byte statusCadastro) {
@@ -108,11 +114,5 @@ public abstract class Pessoa {
                 "\nEndereço: " + endereco +
                 "\nData de cadastro: " + dataDeCadastro.format(dataFormatadaComHora) +
                 "\nStatus: " + (statusCadastro == 1 ? "Ativo" : "Inativo"); // Usa o operador ternário para exibir "Ativo" se o status for 1, ou "Inativo" se for diferente
-    }
-
-    public abstract String getDataCadastro();
-
-    public byte getStatus() {
-        return 0;
     }
 }

@@ -33,4 +33,9 @@ public class Visitante extends Pessoa{
     public void setDataDaVisita(LocalDate dataDaVisita) {
         this.dataDaVisita = dataDaVisita;
     }
+
+    @Override
+    public String getDataCadastro() {
+        return "";
+    }
 }
