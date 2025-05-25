@@ -1,11 +1,11 @@
-package com.antonio.SistemadeAgendamentodeConsultas;
+package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class Paciente extends Pessoa{
+public class Paciente extends Pessoa {
 
     private String convenio;
     private Boolean usoMedicacaoContinua;

@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas;
+package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import lombok.Getter;
 import lombok.Setter;

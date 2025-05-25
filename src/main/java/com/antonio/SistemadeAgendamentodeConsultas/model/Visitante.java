@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas;
+package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
-public class Visitante extends Pessoa{
+public class Visitante extends Pessoa {
     private String motivoDaVisita;
     private LocalDate dataDaVisita;
 

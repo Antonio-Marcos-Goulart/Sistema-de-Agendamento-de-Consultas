@@ -1,7 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.interfaces;
 
 
-import com.antonio.SistemadeAgendamentodeConsultas.Usuario;
+import com.antonio.SistemadeAgendamentodeConsultas.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
