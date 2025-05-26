@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @MappedSuperclass
 public abstract class Pessoa {
 
-    @Id // chave primária no banco
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id automatico
     @Column(name = "id")
     protected int id;
