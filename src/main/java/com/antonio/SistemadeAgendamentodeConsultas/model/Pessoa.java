@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -21,7 +22,7 @@ public abstract class Pessoa {
     protected String nome;
 
     @NotBlank(message = "CPF não pode ser vazio")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos numéricos")
+    @CPF(message = "CPF inválido") // validar cpf
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     protected String cpf;
 
