@@ -26,7 +26,7 @@ public abstract class Pessoa {
     protected String cpf;
 
     @NotBlank(message = "Telefone não pode ser vazio")
-    @Pattern(regexp = "\\d{11}", message = "Telefone deve conter 11 dígitos")
+    @Pattern(regexp = "\\d{10,11}", message = "Telefone deve conter 10 ou 11 dígitos")
     @Column(name = "telefone", nullable = false, length = 11)
     protected String telefone;
 
@@ -50,7 +50,18 @@ public abstract class Pessoa {
     @Column(name = "status_cadastro", nullable = false)
     protected byte statusCadastro;
 
-    // Construtor padrão
+    public Pessoa(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.dataDeCadastro = dataDeCadastro;
+        this.endereco = endereco;
+        this.statusCadastro = statusCadastro;
+    }
+
     public Pessoa() {
         this.dataDeCadastro = LocalDate.now();
         this.statusCadastro = 1; // padrão, cadastro ativo
