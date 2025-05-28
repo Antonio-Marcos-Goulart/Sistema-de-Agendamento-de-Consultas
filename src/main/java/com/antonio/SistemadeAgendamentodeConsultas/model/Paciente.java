@@ -19,7 +19,7 @@ public class Paciente extends Pessoa{
         super();
     }
 
-    public Paciente(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String prontuario) {
+    public Paciente(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String prontuario) {
         super(id, nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
         this.prontuario = prontuario;
     }
