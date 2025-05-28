@@ -15,7 +15,7 @@ public abstract class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id automatico
     @Column(name = "id")
-    protected int id;
+    protected Long id;
 
     @NotBlank(message = "Nome não pode ser vazio") // Valida que o campo não é nulo ou vazio
     @Column(name = "nome", nullable = false, length = 200) // Mapeia a coluna no banco
@@ -51,7 +51,7 @@ public abstract class Pessoa {
     @Column(name = "status_cadastro", nullable = false)
     protected byte statusCadastro;
 
-    public Pessoa(int id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
+    public Pessoa(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -69,7 +69,7 @@ public abstract class Pessoa {
     }
 
     // Getters e Setters com validação simples
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -127,7 +127,6 @@ public abstract class Pessoa {
         if (!email.matches("^\\S+@\\S+\\.\\S+$")) {
             throw new IllegalArgumentException("E-mail inválido");
         }
-
         this.email = email.trim();
     }
 
