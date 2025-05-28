@@ -3,6 +3,7 @@ package com.antonio.SistemadeAgendamentodeConsultas.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Table(name = "paciente")
 public class Paciente extends Pessoa{
 
+    @NotBlank(message = "O prontuário é obrigatório")
     @Column(name = "prontuario", nullable = false, unique = true)
     private String prontuario;
 
