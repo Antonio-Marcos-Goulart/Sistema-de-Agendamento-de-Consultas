@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "paciente")
+@Table(name = "paciente", schema = "agendamento")
 public class Paciente extends Pessoa{
 
     @NotBlank(message = "O prontuário é obrigatório")
