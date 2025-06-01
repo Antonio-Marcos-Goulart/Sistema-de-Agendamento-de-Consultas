@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public abstract class Pessoa {
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;
 
+    @Setter
     @NotNull(message = "Data de cadastro é obrigatória")
     @Column(name = "data_cadastro", nullable = false, updatable = false)
     // updatable = false: não poderá ser alterada após inserção
@@ -81,12 +83,11 @@ public abstract class Pessoa {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome não pode ser nulo");
         }
-
         if (nome.length() > 255) { // Limite arbitrário, ajuste conforme necessidade
             throw new IllegalArgumentException("Nome não pode ter mais que 255 caracteres");
         }
-        // Verificar se contém apenas caracteres válidos
-        if (!nome.matches("[a-zA-ZÀ-ÿ\\s.-]+")) {
+        if (!nome.matches("[a-zA-ZÀ-ÿ\\s.-]+")) { // Verifica se contém apenas caracteres válidos
+
             throw new IllegalArgumentException("Nome contém caractere inválido. Permitido apenas letras, espaços, pontos e hífens.");
         }
         this.nome = nome.trim();
@@ -143,10 +144,6 @@ public abstract class Pessoa {
 
     public LocalDate getDataDeCadastro() {
         return dataDeCadastro;
-    }
-
-    public void setDataDeCadastro(LocalDate dataDeCadastro) {
-        this.dataDeCadastro = dataDeCadastro;
     }
 
     public String getEndereco() {
