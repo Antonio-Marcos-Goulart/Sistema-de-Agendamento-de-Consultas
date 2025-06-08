@@ -7,6 +7,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "medico", schema = "agendamento")
 public class Medico extends Funcionario{
@@ -20,6 +22,24 @@ public class Medico extends Funcionario{
     private String crm;
 
 
+    public Medico() {
+        super();
+    }
 
+    public Medico(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato, String crm) {
+        super(id, nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, funcao, salario, dataDemissao, dataContrato);
+        this.crm = crm;
+    }
+
+    public String getCrm() {
+        return crm;
+    }
+
+    public void setCrm(String crm) {
+        if (!crm.matches("^\\d{6}-[A-Z]{2}$")) {
+            throw new IllegalArgumentException("CRM inválido: deve estar no formato 123456-SP");
+        }
+        this.crm = crm;
+    }
 
 }

@@ -1,23 +1,23 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "funcionario", schema = "agendamento")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Funcionario extends Pessoa{
 
     @NotBlank(message = "Função é obrigatória")
     @Column(name = "funcao", nullable = false, unique = false)
     private String funcao;
 
-    @NotBlank(message = "Salário é obrigatória")
+    @Positive(message = "Salário deve ser positivo")
     @Column(name = "salario", nullable = false, unique = false)
     private double salario;
 
