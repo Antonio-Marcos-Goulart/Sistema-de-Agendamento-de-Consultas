@@ -11,15 +11,15 @@ import org.hibernate.validator.constraints.br.CPF;
 import java.time.LocalDate;
 
 @MappedSuperclass
-public abstract class Pessoa {
+public abstract class Pessoa { 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // id automatico
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do ID
     @Column(name = "id")
     protected Long id;
 
     @NotBlank(message = "Nome não pode ser vazio") // Valida que o campo não é nulo ou vazio
-    @Column(name = "nome", nullable = false, length = 200) // Mapeia a coluna no banco
+    @Column(name = "nome", nullable = false, length = 200)
     protected String nome;
 
     @NotBlank(message = "CPF não pode ser vazio")
@@ -86,7 +86,7 @@ public abstract class Pessoa {
         if (nome.length() > 255) { // Limite arbitrário, ajuste conforme necessidade
             throw new IllegalArgumentException("Nome não pode ter mais que 255 caracteres");
         }
-        if (!nome.matches("[a-zA-ZÀ-ÿ\\s.-]+")) { // Verifica se contém apenas caracteres válidos
+        if (!nome.matches("[a-zA-ZÀ-ÿ\\s.-]+")) { // Permite letras, espaços, pontos e hífens
 
             throw new IllegalArgumentException("Nome contém caractere inválido. Permitido apenas letras, espaços, pontos e hífens.");
         }
@@ -161,7 +161,10 @@ public abstract class Pessoa {
         return statusCadastro;
     }
 
-    public void setStatusCadastro(byte statusCadastro) {
+    public void setStatusCadastro(byte statusCadastro) { // Validação simples para status de cadastro
+        if (statusCadastro != 0 && statusCadastro != 1) {
+            throw new IllegalArgumentException("Status de cadastro deve ser 0 (inativo) ou 1 (ativo)");
+        }
         this.statusCadastro = statusCadastro;
     }
 }
