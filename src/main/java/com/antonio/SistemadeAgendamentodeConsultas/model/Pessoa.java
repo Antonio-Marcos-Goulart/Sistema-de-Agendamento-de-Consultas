@@ -1,24 +1,24 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class Pessoa { 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do ID
-    @Column(name = "id")
-    protected Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do Id
+//    @Column(name = "id")
+//    protected Long id;
 
-    @NotBlank(message = "Nome não pode ser vazio") // Valida que o campo não é nulo ou vazio
+    @NotBlank(message = "Nome não pode ser vazio")
     @Column(name = "nome", nullable = false, length = 200)
     protected String nome;
 
@@ -37,10 +37,10 @@ public abstract class Pessoa {
     protected String email;
 
     @NotNull(message = "Data de nascimento é obrigatória")
+    @PastOrPresent(message = "Data de nascimento deve ser no passado ou presente")
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;
 
-    @Setter
     @NotNull(message = "Data de cadastro é obrigatória")
     @Column(name = "data_cadastro", nullable = false, updatable = false)
     // updatable = false: não poderá ser alterada após inserção
@@ -53,8 +53,8 @@ public abstract class Pessoa {
     @Column(name = "status_cadastro", nullable = false)
     protected byte statusCadastro;
 
-    public Pessoa(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
-        this.id = id;
+    public Pessoa(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
+                  LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -68,15 +68,6 @@ public abstract class Pessoa {
     public Pessoa() {
         this.dataDeCadastro = LocalDate.now();
         this.statusCadastro = 1; // padrão, cadastro ativo
-    }
-
-    // Getters e Setters com validação simples
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public void setNome(String nome) {
@@ -93,10 +84,6 @@ public abstract class Pessoa {
         this.nome = nome.trim();
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
     public void setCpf(String cpf) {
         if (cpf == null || !cpf.matches("\\d{11}")) {
             throw new IllegalArgumentException("CPF deve conter exatamente 11 dígitos numéricos");
@@ -104,19 +91,11 @@ public abstract class Pessoa {
         this.cpf = cpf;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
     public void setTelefone(String telefone) {
         if (telefone == null || !telefone.matches("\\d{10,11}")) {
             throw new IllegalArgumentException("Telefone deve conter 10 ou 11 dígitos");
         }
         this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
@@ -131,10 +110,6 @@ public abstract class Pessoa {
         this.email = email.trim();
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
     public void setDataNascimento(LocalDate dataNascimento) {
         if (dataNascimento == null || dataNascimento.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("Data de nascimento inválida");
@@ -142,12 +117,11 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public LocalDate getDataDeCadastro() {
-        return dataDeCadastro;
-    }
-
-    public String getEndereco() {
-        return endereco;
+    public void setDataDeCadastro(LocalDate dataDeCadastro) {
+        if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Data de cadastro inválida");
+        }
+        this.dataDeCadastro = dataDeCadastro;
     }
 
     public void setEndereco(String endereco) {
@@ -157,11 +131,7 @@ public abstract class Pessoa {
         this.endereco = endereco.trim();
     }
 
-    public byte getStatusCadastro() {
-        return statusCadastro;
-    }
-
-    public void setStatusCadastro(byte statusCadastro) { // Validação simples para status de cadastro
+    public void setStatusCadastro(byte statusCadastro) { // 0 = inativo, 1 = ativo
         if (statusCadastro != 0 && statusCadastro != 1) {
             throw new IllegalArgumentException("Status de cadastro deve ser 0 (inativo) ou 1 (ativo)");
         }

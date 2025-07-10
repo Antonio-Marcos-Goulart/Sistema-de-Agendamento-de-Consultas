@@ -1,14 +1,16 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "medico", schema = "agendamento")
 public class Medico extends Funcionario{
@@ -16,9 +18,9 @@ public class Medico extends Funcionario{
     @NotBlank(message = "CRM é obrigatório")
     @Pattern(
             regexp = "^\\d{6}-[A-Z]{2}$",
-            message =  "CRM deve estar no formato 123456-SP (6 números, hífen e UF em letras maiúsculas)"
+            message =  "CRM deve estar no formato 123456-AA (6 números, hífen e UF em letras maiúsculas)"
     )
-    @Column(name = "crm", nullable = false, unique = true)
+    @Column(name = "crm", nullable = false, unique = true) // CRM obrigatório e único
     private String crm;
 
 
@@ -26,20 +28,10 @@ public class Medico extends Funcionario{
         super();
     }
 
-    public Medico(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato, String crm) {
-        super(id, nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, funcao, salario, dataDemissao, dataContrato);
+    public Medico(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
+                  LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario,
+                  LocalDate dataDemissao, LocalDate dataContrato, String crm) {
+        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, funcao, salario, dataDemissao, dataContrato);
         this.crm = crm;
     }
-
-    public String getCrm() {
-        return crm;
-    }
-
-    public void setCrm(String crm) {
-        if (!crm.matches("^\\d{6}-[A-Z]{2}$")) {
-            throw new IllegalArgumentException("CRM inválido: deve estar no formato 123456-SP");
-        }
-        this.crm = crm;
-    }
-
 }
