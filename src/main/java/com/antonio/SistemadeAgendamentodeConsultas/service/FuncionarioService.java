@@ -73,7 +73,10 @@ public class FuncionarioService {
     public List<Funcionario> searchFuncionario(Long id, String cpf, String nome) {
         List<Funcionario> dadosSaida = List.of();
         if (id != null) {
-            funcionarioRepository.findById(id).orElse(null);
+            Funcionario funcionario = funcionarioRepository.findById(id).orElse(null);
+            if (funcionario != null) {
+                dadosSaida = List.of(funcionario);
+            }
         } else if (cpf != null && !cpf.isBlank()) {
             dadosSaida = funcionarioRepository.findByCpfContainingIgnoreCase(cpf);
         } else if (nome != null && !nome.isBlank()) {
