@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "funcionario", schema = "agendamento")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +39,7 @@ public class Funcionario extends Pessoa{
         super();
     }
 
-    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                       LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario,
-                       LocalDate dataDemissao, LocalDate dataContrato) {
+    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato) {
         super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
         this.funcao = funcao;
         this.salario = salario;

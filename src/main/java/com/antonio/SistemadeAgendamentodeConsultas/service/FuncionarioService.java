@@ -21,7 +21,7 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
-    public Funcionario getFuncionarioById (Long id) {
+    public Funcionario getFuncionarioById(Long id) {
         return funcionarioRepository.findById(id)
                 .orElseThrow(() -> new FuncionarioNaoEncontradoException("Funcionário não encontrado com id: " + id));
     }
@@ -35,11 +35,11 @@ public class FuncionarioService {
         Funcionario existingFuncionario = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new FuncionarioNaoEncontradoException("Funcionário não encontrado com id: " + id));
 
-        if(updatedFuncionario.getNome() != null && !updatedFuncionario.getNome().isEmpty()) {
+        if (updatedFuncionario.getNome() != null && !updatedFuncionario.getNome().isEmpty()) {
             existingFuncionario.setNome(updatedFuncionario.getNome());
         }
 
-        if (updatedFuncionario.getEndereco() != null && !updatedFuncionario.getEndereco().isEmpty()){
+        if (updatedFuncionario.getEndereco() != null && !updatedFuncionario.getEndereco().isEmpty()) {
             existingFuncionario.setEndereco(updatedFuncionario.getEndereco());
         }
 
@@ -63,7 +63,7 @@ public class FuncionarioService {
     }
 
     public void deleteFuncionario(Long id) {
-        if (!funcionarioRepository.existsById(id)){
+        if (!funcionarioRepository.existsById(id)) {
             throw new FuncionarioNaoEncontradoException("Funcionário não encontrado com o id: " + id);
         }
         funcionarioRepository.deleteById(id);
@@ -85,7 +85,7 @@ public class FuncionarioService {
             dadosSaida = funcionarioRepository.findAll(); // Retorna todos -- se não houver filtro
         }
 
-        if (dadosSaida.isEmpty()){ // Lista vazia, lança uma exceção
+        if (dadosSaida.isEmpty()) { // Lista vazia, lança uma exceção
             throw new FuncionarioNaoEncontradoException("Nenhum funcionário encontrado com os critérios fornecidos.");
         }
         return dadosSaida;
