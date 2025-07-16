@@ -71,24 +71,24 @@ public class FuncionarioService {
 
     // Busca funcionarios por id, cpf ou nome
     public List<Funcionario> searchFuncionario(Long id, String cpf, String nome) {
-        List<Funcionario> dadosSaida = List.of();
+        List<Funcionario> dadosSaidaFuncionario = List.of();
         if (id != null) {
             Funcionario funcionario = funcionarioRepository.findById(id).orElse(null);
             if (funcionario != null) {
-                dadosSaida = List.of(funcionario);
+                dadosSaidaFuncionario = List.of(funcionario);
             }
         } else if (cpf != null && !cpf.isBlank()) {
-            dadosSaida = funcionarioRepository.findByCpfContainingIgnoreCase(cpf);
+            dadosSaidaFuncionario = funcionarioRepository.findByCpfContainingIgnoreCase(cpf);
         } else if (nome != null && !nome.isBlank()) {
-            dadosSaida = funcionarioRepository.findByNomeContainingIgnoreCase(nome);
+            dadosSaidaFuncionario = funcionarioRepository.findByNomeContainingIgnoreCase(nome);
         } else {
-            dadosSaida = funcionarioRepository.findAll(); // Retorna todos -- se não houver filtro
+            dadosSaidaFuncionario = funcionarioRepository.findAll(); // Retorna todos -- se não houver filtro
         }
 
-        if (dadosSaida.isEmpty()) { // Lista vazia, lança uma exceção
+        if (dadosSaidaFuncionario.isEmpty()) { // Lista vazia, lança uma exceção
             throw new FuncionarioNaoEncontradoException("Nenhum funcionário encontrado com os critérios fornecidos.");
         }
-        return dadosSaida;
+        return dadosSaidaFuncionario;
 
     }
 
