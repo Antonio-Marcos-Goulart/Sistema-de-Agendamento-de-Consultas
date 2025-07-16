@@ -31,7 +31,7 @@ public class FuncionarioController {
     }
 
     @PutMapping("/{id}")
-    public Funcionario updatefuncionario(@PathVariable Long id, @RequestBody Funcionario updatedFuncionario) {
+    public Funcionario updateFuncionario(@PathVariable Long id, @RequestBody Funcionario updatedFuncionario) {
         return funcionarioService.updateFuncionario(id, updatedFuncionario);
     }
 
