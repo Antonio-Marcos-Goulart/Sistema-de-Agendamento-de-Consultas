@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "paciente", schema = "agendamento")
-public class Paciente extends Pessoa{
+public class Paciente extends Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
