@@ -14,11 +14,6 @@ import java.time.LocalDate;
 @MappedSuperclass
 public abstract class Pessoa { 
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do Id
-//    @Column(name = "id")
-//    protected Long id;
-
     @NotBlank(message = "Nome não pode ser vazio")
     @Column(name = "nome", nullable = false, length = 200)
     protected String nome;
