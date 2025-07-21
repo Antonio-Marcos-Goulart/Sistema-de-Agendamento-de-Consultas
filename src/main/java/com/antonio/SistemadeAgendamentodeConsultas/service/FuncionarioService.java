@@ -39,7 +39,7 @@ public class FuncionarioService {
             existingFuncionario.setNome(updatedFuncionario.getNome());
         }
 
-        if (updatedFuncionario.getEndereco() != null && !updatedFuncionario.getEndereco().isEmpty()) {
+        if (updatedFuncionario.getEndereco() != null) {
             existingFuncionario.setEndereco(updatedFuncionario.getEndereco());
         }
 

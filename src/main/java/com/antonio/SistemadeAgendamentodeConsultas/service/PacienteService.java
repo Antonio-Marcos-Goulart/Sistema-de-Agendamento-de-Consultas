@@ -42,7 +42,7 @@ public class PacienteService {
             existingPaciente.setProntuario(updatedPaciente.getProntuario());
         }
 
-        if (updatedPaciente.getEndereco() != null && !updatedPaciente.getEndereco().isEmpty()) {
+        if (updatedPaciente.getEndereco() != null) {
             existingPaciente.setEndereco(updatedPaciente.getEndereco());
         }
 

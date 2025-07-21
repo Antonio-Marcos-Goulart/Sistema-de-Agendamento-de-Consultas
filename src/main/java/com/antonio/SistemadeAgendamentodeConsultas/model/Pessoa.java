@@ -1,6 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,15 +47,15 @@ public abstract class Pessoa {
     // updatable = false: não poderá ser alterada após inserção
     protected LocalDate dataDeCadastro;
 
-    @NotBlank(message = "Endereço não pode ser vazio")
-    @Column(name = "endereco", nullable = false, length = 255)
-    protected String endereco;
+    @Valid // <- ESSENCIAL para validar os campos de endereço
+    @Embedded
+    private Endereco endereco;
 
     @Column(name = "status_cadastro", nullable = false)
     protected byte statusCadastro;
 
     public Pessoa(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                  LocalDate dataDeCadastro, String endereco, byte statusCadastro) {
+                  LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -124,11 +125,11 @@ public abstract class Pessoa {
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public void setEndereco(String endereco) {
-        if (endereco == null || endereco.trim().isEmpty()) {
+    public void setEndereco(Endereco endereco) {
+        if (endereco == null) {
             throw new IllegalArgumentException("Endereço não pode ser vazio");
         }
-        this.endereco = endereco.trim();
+        this.endereco = endereco;
     }
 
     public void setStatusCadastro(byte statusCadastro) { // 0 = inativo, 1 = ativo

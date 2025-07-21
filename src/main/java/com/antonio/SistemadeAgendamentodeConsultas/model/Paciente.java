@@ -33,7 +33,7 @@ public class Paciente extends Pessoa {
     }
 
     public Paciente(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                    LocalDate dataDeCadastro, String endereco, byte statusCadastro, String prontuario,
+                    LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String prontuario,
                     LocalDate dataConsulta) {
         super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
         this.id = id;

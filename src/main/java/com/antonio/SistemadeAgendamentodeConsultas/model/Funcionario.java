@@ -39,7 +39,7 @@ public class Funcionario extends Pessoa {
         super();
     }
 
-    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, String endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato) {
+    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato) {
         super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
         this.funcao = funcao;
         this.salario = salario;
