@@ -45,7 +45,6 @@ public class MedicoService {
             existingMedico.setEndereco(updatedMedico.getEndereco());
         }
 
-
         if (updatedMedico.getEmail() != null && !updatedMedico.getEmail().isEmpty()) {
             existingMedico.setEmail(updatedMedico.getEmail());
         }
