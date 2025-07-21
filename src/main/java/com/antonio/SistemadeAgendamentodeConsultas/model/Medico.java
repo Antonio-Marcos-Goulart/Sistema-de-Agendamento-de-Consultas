@@ -23,7 +23,6 @@ public class Medico extends Funcionario{
     @Column(name = "crm", nullable = false, unique = true) // CRM obrigatório e único
     private String crm;
 
-
     public Medico() {
         super();
     }
