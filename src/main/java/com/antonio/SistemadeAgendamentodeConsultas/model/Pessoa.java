@@ -113,12 +113,12 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setDataDeCadastro(LocalDate dataDeCadastro) {
-        if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Data de cadastro inválida");
-        }
-        this.dataDeCadastro = dataDeCadastro;
-    }
+//    public void setDataDeCadastro(LocalDate dataDeCadastro) {
+//        if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
+//            throw new IllegalArgumentException("Data de cadastro inválida");
+//        }
+//        this.dataDeCadastro = dataDeCadastro;
+//    }
 
     public void setEndereco(Endereco endereco) {
         if (endereco == null) {
