@@ -1,6 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.enums;
 
-public enum Situacao {
+public enum SituacaoCadastro {
     PENDENTE,
     ATIVO,
     INATIVO
