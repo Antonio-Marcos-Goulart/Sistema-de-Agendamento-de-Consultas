@@ -1,5 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
+import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoAgendamento;
+import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -46,11 +48,16 @@ public abstract class Pessoa {
     @Embedded
     private Endereco endereco;
 
+    @NotNull(message = "Status do cadastro não pode ser nulo")
+    @Enumerated(EnumType.STRING) // @Enumerated(EnumType.STRING) = armazena o nome do enum como string no banco de dados
     @Column(name = "status_cadastro", nullable = false)
-    protected byte statusCadastro;
+    private SituacaoCadastro situacaoCadastro;
+    public Pessoa() {
+        this.dataDeCadastro = LocalDate.now();
+        this.situacaoCadastro = SituacaoCadastro.ATIVO; // Define o status de cadastro como ATIVO por padrão
+    }
 
-    public Pessoa(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                  LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro) {
+    public Pessoa(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -58,20 +65,15 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
         this.dataDeCadastro = dataDeCadastro;
         this.endereco = endereco;
-        this.statusCadastro = statusCadastro;
-    }
-
-    public Pessoa() {
-        this.dataDeCadastro = LocalDate.now();
-        this.statusCadastro = 1; // padrão, cadastro ativo
+        this.situacaoCadastro = situacaoCadastro;
     }
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome não pode ser nulo");
         }
-        if (nome.length() > 255) { // Limite arbitrário, ajuste conforme necessidade
-            throw new IllegalArgumentException("Nome não pode ter mais que 255 caracteres");
+        if (nome.length() > 150) { // Limite arbitrário, ajuste conforme necessidade
+            throw new IllegalArgumentException("Nome não pode ter mais que 150 caracteres");
         }
         if (!nome.matches("[a-zA-ZÀ-ÿ\\s.-]+")) { // Permite letras, espaços, pontos e hífens
 
@@ -125,13 +127,6 @@ public abstract class Pessoa {
             throw new IllegalArgumentException("Endereço não pode ser vazio");
         }
         this.endereco = endereco;
-    }
-
-    public void setStatusCadastro(byte statusCadastro) { // 0 = inativo, 1 = ativo
-        if (statusCadastro != 0 && statusCadastro != 1) {
-            throw new IllegalArgumentException("Status de cadastro deve ser 0 (inativo) ou 1 (ativo)");
-        }
-        this.statusCadastro = statusCadastro;
     }
 }
 
