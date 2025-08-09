@@ -1,5 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
+import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -32,13 +33,26 @@ public class Paciente extends Pessoa {
         super();
     }
 
-    public Paciente(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                    LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String prontuario,
-                    LocalDate dataConsulta) {
-        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
+    public Paciente(Long id, String prontuario, LocalDate dataConsulta) {
         this.id = id;
         this.prontuario = prontuario;
         this.dataConsulta = dataConsulta;
     }
+
+    public Paciente(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro, Long id, String prontuario, LocalDate dataConsulta) {
+        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, situacaoCadastro);
+        this.id = id;
+        this.prontuario = prontuario;
+        this.dataConsulta = dataConsulta;
+    }
+
+//    public Paciente(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
+//                    LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String prontuario,
+//                    LocalDate dataConsulta) {
+//        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
+//        this.id = id;
+//        this.prontuario = prontuario;
+//        this.dataConsulta = dataConsulta;
+//    }
 
 }

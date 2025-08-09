@@ -1,5 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
+import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,12 +40,12 @@ public class Funcionario extends Pessoa {
         super();
     }
 
-    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                       LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String funcao, double salario, LocalDate dataDemissao, LocalDate dataContrato) {
-        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
+    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro, Long id, String funcao, double salario, LocalDate dataContrato, LocalDate dataDemissao) {
+        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, situacaoCadastro);
+        this.id = id;
         this.funcao = funcao;
         this.salario = salario;
-        this.dataDemissao = dataDemissao;
         this.dataContrato = dataContrato;
+        this.dataDemissao = dataDemissao;
     }
 }

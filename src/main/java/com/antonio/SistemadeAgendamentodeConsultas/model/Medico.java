@@ -1,6 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 
+import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -27,10 +28,8 @@ public class Medico extends Funcionario{
         super();
     }
 
-    public Medico(String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-                  LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String funcao, double salario,
-                  LocalDate dataDemissao, LocalDate dataContrato, String crm) {
-        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro, funcao, salario, dataDemissao, dataContrato);
+    public Medico(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro, Long id, String funcao, double salario, LocalDate dataContrato, LocalDate dataDemissao, String crm) {
+        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, situacaoCadastro, id, funcao, salario, dataContrato, dataDemissao);
         this.crm = crm;
     }
 }
