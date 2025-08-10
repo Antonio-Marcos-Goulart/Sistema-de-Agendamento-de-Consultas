@@ -16,13 +16,13 @@ public class EmailController {
     private EmailService emailService;
 
     @PostMapping("/enviar")
-    public ResponseEntity<String>enviar(
+    public ResponseEntity<String>enviar( // Recebe os dados do email
             @RequestParam String para,
             @RequestParam String assunto,
             @RequestParam String conteudo) {
         try {
             emailService.enviarEmail(para, assunto, conteudo);
-            return ResponseEntity.ok("E-mail enviado");
+            return ResponseEntity.ok("E-mail enviado"); // Retorna 200 e a mensagem de Email enviado
         } catch (Exception e ) {
             throw new RuntimeException("Erro inesperado ao enviar o e-mail\n" + e.getMessage());
         }
