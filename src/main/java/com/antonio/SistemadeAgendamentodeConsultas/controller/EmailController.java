@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/email")
-public class EmailController {
+public class EmailController { // Trabalha somente com as solicitações HTTP (GET, PUT, DELETE)
 
     @Autowired
     private EmailService emailService;

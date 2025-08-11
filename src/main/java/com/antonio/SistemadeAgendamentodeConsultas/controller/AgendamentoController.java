@@ -21,7 +21,7 @@ public class AgendamentoController {
     @PostMapping // Não é necessário especificar o caminho, pois o caminho já está definido na classe com @RequestMapping("/agendamentos")
     public ResponseEntity<String> agendar(@RequestBody @Valid Agendamento agendamento) {
         try {
-            Agendamento novoAgendamento = agendamentoService.agendar(agendamento);
+            Agendamento novoAgendamento = agendamentoService.agendar(agendamento); // Joga para o AgendamentoService salvar o agendamento...
             return ResponseEntity.ok("Agendamento criado"); // Retorna 200 e a mensagem de Agendamento criado
         } catch (Exception e) {
             throw new RuntimeException("Erro inesperado ao agendar a consulta\n" + e.getMessage());

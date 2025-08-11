@@ -13,7 +13,7 @@ public class AgendamentoService {
 
     @Autowired
     private EmailService emailService;
-    public Agendamento agendar(Agendamento agendamento){ // Recebe os dados do meu agendamento
+    public Agendamento agendar(Agendamento agendamento){ // Recebe os dados do meu agendamento, vindos do AgendamentoController
         Agendamento agendamentoSalvo = agendamentoRepository.save(agendamento); // Salva o agendamento no banco
 
         // Envia o email para confirmar o agendamento com o paciente
