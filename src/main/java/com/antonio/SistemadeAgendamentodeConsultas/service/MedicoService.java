@@ -35,7 +35,7 @@ public class MedicoService {
     // Atualiza: Nome, endereço, email, telefone, função e salário
     public Medico updateMedico(Long id, Funcionario updatedMedico) {
         Medico existingMedico = medicoRepository.findById(id)
-                .orElseThrow(() -> new FuncionarioNaoEncontradoException("Funcionário não encontrado com id: " + id));
+                .orElseThrow(() -> new MedicoNaoEncontradoExeption("Medico não encontrado com id: " + id));
 
         if (updatedMedico.getNome() != null && !updatedMedico.getNome().isEmpty()) {
             existingMedico.setNome(updatedMedico.getNome());
