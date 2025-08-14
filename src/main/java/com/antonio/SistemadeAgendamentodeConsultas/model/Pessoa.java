@@ -21,7 +21,7 @@ public abstract class Pessoa {
     protected String nome;
 
     @NotBlank(message = "CPF não pode ser vazio")
-    @CPF(message = "CPF inválido") // validar cpf
+   // @CPF(message = "CPF inválido") // validar cpf com probelma
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     protected String cpf;
 
