@@ -45,14 +45,4 @@ public class Paciente extends Pessoa {
         this.prontuario = prontuario;
         this.dataConsulta = dataConsulta;
     }
-
-//    public Paciente(Long id, String nome, String cpf, String telefone, String email, LocalDate dataNascimento,
-//                    LocalDate dataDeCadastro, Endereco endereco, byte statusCadastro, String prontuario,
-//                    LocalDate dataConsulta) {
-//        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, statusCadastro);
-//        this.id = id;
-//        this.prontuario = prontuario;
-//        this.dataConsulta = dataConsulta;
-//    }
-
 }
