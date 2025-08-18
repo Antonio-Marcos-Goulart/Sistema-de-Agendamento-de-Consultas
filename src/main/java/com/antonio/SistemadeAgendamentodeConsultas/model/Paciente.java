@@ -1,6 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -20,14 +21,13 @@ public class Paciente extends Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O prontuário é obrigatório")
-    @Column(name = "prontuario", nullable = false, unique = true)
+    @Column(name = "prontuario", unique = true)
     private String prontuario;
 
-    @NotNull(message = "Data da consulta é obrigatório")
-    @FutureOrPresent(message = "A data da consulta deve ser hoje ou futura")
-    @Column(name = "data_consulta", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Column(name = "data_consulta")
     private LocalDate dataConsulta;
+
 
     public Paciente() {
         super();

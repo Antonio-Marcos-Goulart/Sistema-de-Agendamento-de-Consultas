@@ -2,6 +2,7 @@ package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoAgendamento;
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -35,11 +36,13 @@ public abstract class Pessoa {
     protected String email;
 
     @NotNull(message = "Data de nascimento é obrigatória")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @PastOrPresent(message = "Data de nascimento deve ser no passado ou presente")
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;
 
     @NotNull(message = "Data de cadastro é obrigatória")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Column(name = "data_cadastro", nullable = false, updatable = false)
     // updatable = false: não poderá ser alterada após inserção
     protected LocalDate dataDeCadastro;
