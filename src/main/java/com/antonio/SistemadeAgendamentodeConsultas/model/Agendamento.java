@@ -18,15 +18,6 @@ public class Agendamento {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "paciente_id", nullable = false)
-    private Paciente paciente;
-
-    @ManyToOne
-    @JoinColumn(name = "medico_id", nullable = false)
-    private Medico medico;
-
-    @NotNull(message = "Observação não pode ser nula")
     @Column(name = "observacao", nullable = false, length = 300)
     private String observacoes;
 
@@ -39,7 +30,7 @@ public class Agendamento {
    @Column(name = "local_consulta", nullable = false, length = 100)
    private String localConsulta;
 
-   @NotNull(message = "Tipo do agendamento não pode ser nulo")
+   @NotNull(message = "Tipo do agendamento não pode ser nulo") // Criar um ENUM com os tipos de agendamentos
    @Column(name = "tipo_agendamento", nullable = false)
    private String tipoAgendamento;
 
@@ -47,5 +38,14 @@ public class Agendamento {
     @Enumerated(EnumType.STRING) // @Enumerated(EnumType.STRING) = armazena o nome do enum como string no banco de dados
     @Column(name = "status_agendamento", nullable = false)
     private SituacaoAgendamento statusAgendamento;
+
+    @ManyToOne
+    @JoinColumn(name = "paciente_id", nullable = false)
+    private Paciente paciente;
+
+    @ManyToOne
+    @JoinColumn(name = "medico_id", nullable = false)
+    private Medico medico;
+
 }
 

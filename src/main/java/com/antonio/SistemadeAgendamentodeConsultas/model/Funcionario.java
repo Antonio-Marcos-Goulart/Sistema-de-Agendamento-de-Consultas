@@ -5,11 +5,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -36,16 +38,4 @@ public class Funcionario extends Pessoa {
     @Column(name = "data_demissao", nullable = true) // opcional na hora do cadastro
     private LocalDate dataDemissao;
 
-    public Funcionario() {
-        super();
-    }
-
-    public Funcionario(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro, Long id, String funcao, double salario, LocalDate dataContrato, LocalDate dataDemissao) {
-        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, situacaoCadastro);
-        this.id = id;
-        this.funcao = funcao;
-        this.salario = salario;
-        this.dataContrato = dataContrato;
-        this.dataDemissao = dataDemissao;
-    }
 }
