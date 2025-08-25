@@ -2,15 +2,20 @@ package com.antonio.SistemadeAgendamentodeConsultas.model;
 
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -28,21 +33,7 @@ public class Paciente extends Pessoa {
     @Column(name = "data_consulta")
     private LocalDate dataConsulta;
 
-
-    public Paciente() {
-        super();
-    }
-
-    public Paciente(Long id, String prontuario, LocalDate dataConsulta) {
-        this.id = id;
-        this.prontuario = prontuario;
-        this.dataConsulta = dataConsulta;
-    }
-
-    public Paciente(String nome, String cpf, String telefone, String email, LocalDate dataNascimento, LocalDate dataDeCadastro, Endereco endereco, SituacaoCadastro situacaoCadastro, Long id, String prontuario, LocalDate dataConsulta) {
-        super(nome, cpf, telefone, email, dataNascimento, dataDeCadastro, endereco, situacaoCadastro);
-        this.id = id;
-        this.prontuario = prontuario;
-        this.dataConsulta = dataConsulta;
-    }
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<Agendamento> agendamentoList;
 }
