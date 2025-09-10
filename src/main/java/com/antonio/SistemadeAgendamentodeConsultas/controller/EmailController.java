@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
 @RestController
 @RequestMapping("/email")
 public class EmailController { // Trabalha somente com as solicitações HTTP (GET, PUT, DELETE)
