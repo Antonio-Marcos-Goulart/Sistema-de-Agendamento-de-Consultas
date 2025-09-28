@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class Pessoa { 
+public abstract class Pessoa {
 
     @NotBlank(message = "Nome não pode ser vazio")
     @Column(name = "nome", nullable = false, length = 200)
@@ -36,7 +36,7 @@ public abstract class Pessoa {
     protected String email;
 
     @NotNull(message = "Data de nascimento é obrigatória")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Data de nascimento deve ser no passado ou presente")
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;
@@ -46,9 +46,9 @@ public abstract class Pessoa {
     protected LocalDate dataDeCadastro = LocalDate.now();
 
     @NotNull(message = "Status do cadastro não pode ser nulo")
+    @Column(name = "situacao_cadastro", nullable = false)
     @Enumerated(EnumType.STRING) // @Enumerated(EnumType.STRING) = armazena o nome do enum como string no banco de dados
-    @Column(name = "status_cadastro", nullable = false)
-    private SituacaoCadastro situacaoCadastro;
+    protected SituacaoCadastro situacaoCadastro = SituacaoCadastro.ATIVO;
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
@@ -96,13 +96,6 @@ public abstract class Pessoa {
         }
         this.dataNascimento = dataNascimento;
     }
-
-//    public void setDataDeCadastro(LocalDate dataDeCadastro) {
-//        if (dataDeCadastro == null || dataDeCadastro.isAfter(LocalDate.now())) {
-//            throw new IllegalArgumentException("Data de cadastro inválida");
-//        }
-//        this.dataDeCadastro = dataDeCadastro;
-//    }
 
     @Embedded
     private Endereco endereco;
