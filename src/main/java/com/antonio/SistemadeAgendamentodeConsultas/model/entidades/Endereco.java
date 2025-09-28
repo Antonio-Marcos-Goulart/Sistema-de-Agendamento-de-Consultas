@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas.model;
+package com.antonio.SistemadeAgendamentodeConsultas.model.entidades;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

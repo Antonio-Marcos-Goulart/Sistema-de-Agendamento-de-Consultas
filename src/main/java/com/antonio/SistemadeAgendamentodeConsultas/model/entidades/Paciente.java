@@ -1,12 +1,9 @@
-package com.antonio.SistemadeAgendamentodeConsultas.model;
+package com.antonio.SistemadeAgendamentodeConsultas.model.entidades;
 
-import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
+import com.antonio.SistemadeAgendamentodeConsultas.model.abstratos.Pessoa;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 

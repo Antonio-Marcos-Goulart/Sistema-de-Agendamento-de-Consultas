@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas.model;
+package com.antonio.SistemadeAgendamentodeConsultas.model.entidades;
 
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoAgendamento;
 import jakarta.persistence.*;

@@ -1,13 +1,11 @@
-package com.antonio.SistemadeAgendamentodeConsultas.model;
+package com.antonio.SistemadeAgendamentodeConsultas.model.abstratos;
 
-import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoAgendamento;
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Endereco;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 

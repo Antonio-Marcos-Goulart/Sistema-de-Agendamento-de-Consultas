@@ -1,13 +1,11 @@
-package com.antonio.SistemadeAgendamentodeConsultas.model;
+package com.antonio.SistemadeAgendamentodeConsultas.model.entidades;
 
 
-import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoCadastro;
+import com.antonio.SistemadeAgendamentodeConsultas.model.abstratos.Pessoa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +14,11 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name = "medico", schema = "agendamento")
-public class Medico extends Funcionario{
+public class Medico extends Pessoa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank(message = "CRM é obrigatório")
     @Pattern(
