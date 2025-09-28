@@ -1,9 +1,8 @@
 package com.antonio.SistemadeAgendamentodeConsultas.service;
 
-import com.antonio.SistemadeAgendamentodeConsultas.exception.FuncionarioNaoEncontradoException;
 import com.antonio.SistemadeAgendamentodeConsultas.exception.MedicoNaoEncontradoExeption;
-import com.antonio.SistemadeAgendamentodeConsultas.model.Funcionario;
-import com.antonio.SistemadeAgendamentodeConsultas.model.Medico;
+import com.antonio.SistemadeAgendamentodeConsultas.model.abstratos.Pessoa;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Medico;
 import com.antonio.SistemadeAgendamentodeConsultas.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,7 @@ public class MedicoService {
     }
 
     // Atualiza: Nome, endereço, email, telefone, função e salário
-    public Medico updateMedico(Long id, Funcionario updatedMedico) {
+    public Medico updateMedico(Long id, Pessoa updatedMedico) {
         Medico existingMedico = medicoRepository.findById(id)
                 .orElseThrow(() -> new MedicoNaoEncontradoExeption("Medico não encontrado com id: " + id));
 
@@ -51,14 +50,6 @@ public class MedicoService {
 
         if (updatedMedico.getTelefone() != null && !updatedMedico.getTelefone().isEmpty()) {
             existingMedico.setTelefone(updatedMedico.getTelefone());
-        }
-
-        if (updatedMedico.getFuncao() != null && !updatedMedico.getFuncao().isEmpty()) {
-            existingMedico.setFuncao(updatedMedico.getFuncao());
-        }
-
-        if (updatedMedico.getSalario() > 0) {
-            existingMedico.setSalario(updatedMedico.getSalario());
         }
 
         return medicoRepository.save(existingMedico);
@@ -91,18 +82,4 @@ public class MedicoService {
         }
         return dadosSaidaMedico;
     }
-
-    /*
-    // Busca medicos por id, cpf, nome ou CRM
-    @GetMapping("/search")
-    public List<Medico> searchFuncionarios(
-            @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String cpf,
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String crm){
-        return medicoService.searchMedico(id, cpf, nome, crm);
-    }
-     */
-
-
 }

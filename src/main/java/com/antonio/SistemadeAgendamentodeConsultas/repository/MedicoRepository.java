@@ -1,5 +1,5 @@
 package com.antonio.SistemadeAgendamentodeConsultas.repository;
-import com.antonio.SistemadeAgendamentodeConsultas.model.Medico;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

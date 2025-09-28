@@ -1,7 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.service;
 
 import com.antonio.SistemadeAgendamentodeConsultas.exception.PacienteNaoEncontadoException;
-import com.antonio.SistemadeAgendamentodeConsultas.model.Paciente;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
 import com.antonio.SistemadeAgendamentodeConsultas.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

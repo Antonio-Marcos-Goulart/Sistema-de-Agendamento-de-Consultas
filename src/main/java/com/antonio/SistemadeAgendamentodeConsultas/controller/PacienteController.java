@@ -1,6 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
-import com.antonio.SistemadeAgendamentodeConsultas.model.Paciente;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
 import com.antonio.SistemadeAgendamentodeConsultas.service.PacienteService;
 import org.springframework.web.bind.annotation.*;
 

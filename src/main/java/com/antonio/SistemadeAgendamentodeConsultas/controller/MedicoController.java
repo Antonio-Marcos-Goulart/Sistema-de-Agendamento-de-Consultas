@@ -1,7 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
-import com.antonio.SistemadeAgendamentodeConsultas.model.Funcionario;
-import com.antonio.SistemadeAgendamentodeConsultas.model.Medico;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Medico;
 import com.antonio.SistemadeAgendamentodeConsultas.service.MedicoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +43,7 @@ public class MedicoController {
 
     // Busca medicos por id, cpf, nome ou CRM
     @GetMapping("/search")
-    public List<Medico> searchFuncionarios(
+    public List<Medico> searchMedico(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String cpf,
             @RequestParam(required = false) String nome,
