@@ -30,7 +30,8 @@ public class Paciente extends Pessoa {
     @Column(name = "data_consulta")
     private LocalDate dataConsulta;
 
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    List<Agendamento> agendamentoList;
+    private List<Agendamento> agendamentoList;
+
 }
