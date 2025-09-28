@@ -1,6 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.service;
 
-import com.antonio.SistemadeAgendamentodeConsultas.model.Agendamento;
+import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Agendamento;
 import com.antonio.SistemadeAgendamentodeConsultas.repository.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,6 @@ public class AgendamentoService {
                 "Seu agendamento foi confirmado para o dia " + agendamento.getDataAgendamento() +
                 "Detalhes do agendamento:\n" +
                 "Médico: " + agendamentoSalvo.getMedico().getNome() + "\n" +
-                "Especialidade: " + agendamentoSalvo.getMedico().getFuncao() + "\n" +
                 "Local: " + agendamentoSalvo.getLocalConsulta();
         emailService.enviarEmail(email, assunto, conteudo);
 
