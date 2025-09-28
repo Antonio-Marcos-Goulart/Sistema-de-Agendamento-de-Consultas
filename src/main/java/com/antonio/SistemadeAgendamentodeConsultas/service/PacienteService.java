@@ -87,5 +87,4 @@ public class PacienteService {
         }
         return dadosSaidaPaciente;
     }
-
 }
