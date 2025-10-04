@@ -1,23 +1,31 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
+import com.antonio.SistemadeAgendamentodeConsultas.repository.PacienteRepository;
 import com.antonio.SistemadeAgendamentodeConsultas.service.PacienteService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("paciente")
 public class PacienteController {
-    private PacienteService pacienteService;
+    private final PacienteRepository pacienteRepository;
+    private final PacienteService pacienteService;
 
-    public PacienteController(PacienteService pacienteService) {
+    public PacienteController(PacienteService pacienteService, PacienteRepository pacienteRepository) {
         this.pacienteService = pacienteService;
+        this.pacienteRepository = pacienteRepository;
     }
 
-    @PostMapping
-    public Paciente createPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.createPaciente(paciente);
+    @PostMapping(consumes = {"application/json"}) // VERIFICAR ISSO
+    public ResponseEntity<Paciente> createPaciente(@RequestBody @Valid Paciente paciente) {
+        Paciente saved = pacienteService.createPaciente(paciente);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping
@@ -26,8 +34,9 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public Paciente getPacienteById(@PathVariable Long id) {
-        return pacienteService.getPacienteById(id);
+    public PacienteDTO getPacienteByIdDTO(@PathVariable Long id) {
+        Paciente paciente = pacienteService.getPacienteById(id);
+        return new PacienteDTO(paciente);
     }
 
     @PutMapping("/{id}")
@@ -41,11 +50,14 @@ public class PacienteController {
     }
 
     @GetMapping("/search")
-    public List<Paciente> searchPaciente(
+    public List<PacienteDTO> searchPacienteDTO(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String cpf,
             @RequestParam(required = false) String nome) {
-        return pacienteService.searchPaciente(id, cpf, nome);
+        return pacienteService.searchPaciente(id, cpf, nome)
+                .stream()
+                .map(PacienteDTO::new)
+                .collect(Collectors.toList());
     }
 
 }
