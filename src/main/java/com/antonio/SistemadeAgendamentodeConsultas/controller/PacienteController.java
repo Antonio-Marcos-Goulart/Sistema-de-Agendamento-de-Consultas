@@ -59,5 +59,4 @@ public class PacienteController {
                 .map(PacienteDTO::new)
                 .collect(Collectors.toList());
     }
-
 }
