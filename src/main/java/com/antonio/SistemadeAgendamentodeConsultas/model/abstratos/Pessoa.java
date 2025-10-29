@@ -8,6 +8,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -36,14 +37,14 @@ public abstract class Pessoa {
     protected String email;
 
     @NotNull(message = "Data de nascimento é obrigatória")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @PastOrPresent(message = "Data de nascimento deve ser no passado ou presente")
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Column(name = "data_cadastro", nullable = false, updatable = false) // updatable = false: não poderá ser alterada após inserção
-    protected LocalDate dataDeCadastro = LocalDate.now();
+    protected LocalDateTime dataDeCadastro = LocalDateTime.now();
 
     @NotNull(message = "Status do cadastro não pode ser nulo")
     @Column(name = "situacao_cadastro", nullable = false)
