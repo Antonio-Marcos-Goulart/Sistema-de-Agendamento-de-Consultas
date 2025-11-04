@@ -2,9 +2,9 @@ package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
 import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
-import com.antonio.SistemadeAgendamentodeConsultas.repository.PacienteRepository;
 import com.antonio.SistemadeAgendamentodeConsultas.service.PacienteService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,45 +12,48 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("paciente")
+@RequestMapping("/pacientes")
 public class PacienteController {
-    private final PacienteRepository pacienteRepository;
+
     private final PacienteService pacienteService;
 
-    public PacienteController(PacienteService pacienteService, PacienteRepository pacienteRepository) {
+    public PacienteController(PacienteService pacienteService) {
         this.pacienteService = pacienteService;
-        this.pacienteRepository = pacienteRepository;
     }
 
-    @PostMapping(consumes = {"application/json"}) // VERIFICAR ISSO
-    public ResponseEntity<Paciente> createPaciente(@RequestBody @Valid Paciente paciente) {
+    @PostMapping(consumes = {"application/json", "application/json;charset=UTF-8"})
+    public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) {
         Paciente saved = pacienteService.createPaciente(paciente);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping
-    public List<Paciente> getAllPacientes() {
-        return pacienteService.getAllPacientes();
+    public List<PacienteDTO> getAllPacientes() {
+        return pacienteService.getAllPacientes()
+                .stream()
+                .map(PacienteDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public PacienteDTO getPacienteByIdDTO(@PathVariable Long id) {
+    public ResponseEntity<PacienteDTO> getPacienteById(@PathVariable Long id) {
         Paciente paciente = pacienteService.getPacienteById(id);
-        return new PacienteDTO(paciente);
+        return ResponseEntity.ok(new PacienteDTO(paciente));
     }
 
     @PutMapping("/{id}")
-    public Paciente updatePaciente(@PathVariable Long id, @RequestBody Paciente updatedPaciente) {
-        return pacienteService.updatePaciente(id, updatedPaciente);
+    public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @Valid @RequestBody Paciente paciente) {
+        return ResponseEntity.ok(pacienteService.updatePaciente(id, paciente));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePaciente(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePaciente(@PathVariable Long id) {
         pacienteService.deletePaciente(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/search")
-    public List<PacienteDTO> searchPacienteDTO(
+    public List<PacienteDTO> searchPacientes(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String cpf,
             @RequestParam(required = false) String nome) {

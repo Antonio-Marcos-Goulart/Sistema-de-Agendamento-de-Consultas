@@ -37,7 +37,7 @@ public abstract class Pessoa {
     protected String email;
 
     @NotNull(message = "Data de nascimento é obrigatória")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @PastOrPresent(message = "Data de nascimento deve ser no passado ou presente")
     @Column(name = "data_nascimento", nullable = false)
     protected LocalDate dataNascimento;

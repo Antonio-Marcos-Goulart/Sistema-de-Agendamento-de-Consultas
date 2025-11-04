@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/email")
-public class EmailController { // Trabalha somente com as solicitações HTTP (GET, PUT, DELETE)
+public class EmailController { // Trabalha somente com as solicitações (GET, PUT, DELETE)
 
     @Autowired
     private EmailService emailService;
@@ -24,7 +24,7 @@ public class EmailController { // Trabalha somente com as solicitações HTTP (G
             @RequestParam("anexo") MultipartFile anexo) {
         try {
             emailService.enviarEmail(destinatario, assunto, conteudo, anexo);
-            return ResponseEntity.ok("E-mail enviado"); // Retorna 200 e a mensagem de Email enviado
+            return ResponseEntity.ok("E-mail enviado");
         } catch (Exception e ) {
             throw new RuntimeException("Erro inesperado ao enviar o e-mail\n" + e.getMessage());
         }

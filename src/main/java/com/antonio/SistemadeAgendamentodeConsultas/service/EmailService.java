@@ -46,6 +46,7 @@ public class EmailService { // Realiza o envio dos emails solicitados por outras
             helper.setText(conteudo, true); // Posso criar os e-mails em HTML
 
             javaMailService.send(mensagem); // Envia, faz o envio para o destino usando as informações do application.properties e aquelas do helper juntando com o email do cliente cadastrado com ele
+
         } catch (MessagingException e) {
             throw new RuntimeException("Erro ao enviar e-mail " + e.getMessage());
         }
