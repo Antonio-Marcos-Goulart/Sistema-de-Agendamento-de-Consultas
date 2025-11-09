@@ -62,7 +62,3 @@ src/
 ## Autor
 
 Desenvolvido por [Antonio Marcos Goulart](https://github.com/Antonio-Marcos-Goulart)
-
----
-```
-Sistema de Agendamento de Consultas, projeto Java Spring Boot para clínicas e consultórios.  
