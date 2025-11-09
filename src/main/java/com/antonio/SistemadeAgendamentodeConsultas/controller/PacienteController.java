@@ -1,7 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
-import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteCreateDTO;
-import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteDTO;
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.paciente.PacienteCreateDTO;
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.paciente.PacienteDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
 import com.antonio.SistemadeAgendamentodeConsultas.service.PacienteService;
 import jakarta.validation.Valid;

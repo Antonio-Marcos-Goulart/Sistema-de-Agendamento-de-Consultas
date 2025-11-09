@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
+package com.antonio.SistemadeAgendamentodeConsultas.DTOs.email;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

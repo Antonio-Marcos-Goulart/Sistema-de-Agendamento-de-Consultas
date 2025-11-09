@@ -1,5 +1,6 @@
-package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
+package com.antonio.SistemadeAgendamentodeConsultas.DTOs.paciente;
 
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.endereco.EnderecoCreateDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;

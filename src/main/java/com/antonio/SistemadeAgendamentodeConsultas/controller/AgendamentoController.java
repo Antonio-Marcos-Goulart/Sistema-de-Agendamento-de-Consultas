@@ -1,6 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
-import com.antonio.SistemadeAgendamentodeConsultas.DTOs.AgendamentoCreateDTO;
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.agendamento.AgendamentoCreateDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.service.AgendamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
+package com.antonio.SistemadeAgendamentodeConsultas.DTOs.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

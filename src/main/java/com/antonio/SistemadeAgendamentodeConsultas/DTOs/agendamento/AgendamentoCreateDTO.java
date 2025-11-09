@@ -1,4 +1,4 @@
-package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
+package com.antonio.SistemadeAgendamentodeConsultas.DTOs.agendamento;
 
 import com.antonio.SistemadeAgendamentodeConsultas.enums.SituacaoAgendamento;
 import com.fasterxml.jackson.annotation.JsonFormat;

@@ -1,5 +1,7 @@
-package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
+package com.antonio.SistemadeAgendamentodeConsultas.DTOs.paciente;
 
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.endereco.EnderecoCreateDTO;
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.agendamento.AgendamentoDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
 import jakarta.validation.Valid;
 import lombok.Getter;

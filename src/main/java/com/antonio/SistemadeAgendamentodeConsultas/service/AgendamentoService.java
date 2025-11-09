@@ -1,6 +1,6 @@
 package com.antonio.SistemadeAgendamentodeConsultas.service;
 
-import com.antonio.SistemadeAgendamentodeConsultas.DTOs.AgendamentoCreateDTO;
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.agendamento.AgendamentoCreateDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.*;
 import com.antonio.SistemadeAgendamentodeConsultas.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
