@@ -18,7 +18,7 @@ O sistema simula um ambiente de agendamento de consultas médicas, incluindo o c
 
 ## Tecnologias Utilizadas
 
-- **Java 17+**
+- **Java 21**
 - **Spring Boot**: Estrutura principal do backend, com dependências Spring Web, Spring Data JPA e Spring Scheduling.
 - **Hibernate/JPA**: ORM para persistência e consulta de dados em banco relacional.
 - **Bean Validation (javax.validation/jakarta.validation)**: Annotações para validações automáticas dos dados.
