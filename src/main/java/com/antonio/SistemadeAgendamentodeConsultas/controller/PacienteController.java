@@ -1,10 +1,10 @@
 package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
+import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteCreateDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.DTOs.PacienteDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
 import com.antonio.SistemadeAgendamentodeConsultas.service.PacienteService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +21,15 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
 
-    @PostMapping(consumes = {"application/json", "application/json;charset=UTF-8"})
-    public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) {
-        Paciente saved = pacienteService.createPaciente(paciente);
+    @PostMapping
+    public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody PacienteCreateDTO dto) {
+        Paciente saved = pacienteService.createPaciente(dto);
         return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @Valid @RequestBody PacienteCreateDTO dto) {
+        return ResponseEntity.ok(pacienteService.updatePaciente(id, dto));
     }
 
     @GetMapping
@@ -39,11 +44,6 @@ public class PacienteController {
     public ResponseEntity<PacienteDTO> getPacienteById(@PathVariable Long id) {
         Paciente paciente = pacienteService.getPacienteById(id);
         return ResponseEntity.ok(new PacienteDTO(paciente));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @Valid @RequestBody Paciente paciente) {
-        return ResponseEntity.ok(pacienteService.updatePaciente(id, paciente));
     }
 
     @DeleteMapping("/{id}")
@@ -63,3 +63,5 @@ public class PacienteController {
                 .collect(Collectors.toList());
     }
 }
+
+// Muitos problemas aqui referentes a requisição http dando erro
