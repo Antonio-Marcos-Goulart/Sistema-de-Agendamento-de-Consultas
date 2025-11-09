@@ -1,7 +1,7 @@
 package com.antonio.SistemadeAgendamentodeConsultas.DTOs;
 
 import com.antonio.SistemadeAgendamentodeConsultas.model.entidades.Paciente;
-import lombok.AllArgsConstructor;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 
 public class PacienteDTO {
@@ -23,8 +22,7 @@ public class PacienteDTO {
     private String email;
     private String telefone;
     private String prontuario;
-
-    private List<AgendamentoDTO> agendamentos;
+    private List<AgendamentoDTO> agendamentos = new ArrayList<>();
 
     public PacienteDTO(Paciente paciente) {
         this.id = paciente.getId();
@@ -38,12 +36,14 @@ public class PacienteDTO {
         // Converte lista de agendamentos evitando LazyInitializationException
         if (paciente.getAgendamentoList() != null) {
             this.agendamentos = paciente.getAgendamentoList()
-                    .stream()
-                    .map(AgendamentoDTO::new)
-                    .toList();
-        } else {
-            this.agendamentos = new ArrayList<>();
+                .stream()
+                .map(AgendamentoDTO::new)
+                .toList();
         }
+    }
+
+    public @Valid EnderecoCreateDTO getEndereco() {
+        return null;
     }
 }
 
