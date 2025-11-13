@@ -2,6 +2,7 @@ package com.antonio.SistemadeAgendamentodeConsultas.controller;
 
 import com.antonio.SistemadeAgendamentodeConsultas.DTOs.agendamento.AgendamentoCreateDTO;
 import com.antonio.SistemadeAgendamentodeConsultas.service.AgendamentoService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ public class AgendamentoController {
     @Autowired
     private AgendamentoService agendamentoService;
 
+    @Operation(summary = "Criar um agendamento", description = "Criar um agendamento")
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
