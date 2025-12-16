@@ -23,7 +23,7 @@ public class PacienteController {
     }
 
 
-    @Operation(summary = "Atualizar o paciente buscando pelo Id", description = "Atualizar o paciente buscando pelo Id")
+    @Operation(summary = "Criar o cadastro do paciente", description = "Criar o cadastro do paciente")
     @PostMapping
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody PacienteCreateDTO dto) {
         Paciente saved = pacienteService.createPaciente(dto);
