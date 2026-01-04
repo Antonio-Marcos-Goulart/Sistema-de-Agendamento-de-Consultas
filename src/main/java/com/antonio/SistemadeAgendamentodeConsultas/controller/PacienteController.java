@@ -72,4 +72,3 @@ public class PacienteController {
     }
 }
 
-// Muitos problemas aqui referentes a requisição http dando erro
