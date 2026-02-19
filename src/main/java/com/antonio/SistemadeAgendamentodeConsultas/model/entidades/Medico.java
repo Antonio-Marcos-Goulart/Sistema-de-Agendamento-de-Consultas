@@ -1,6 +1,5 @@
 package com.antonio.SistemadeAgendamentodeConsultas.model.entidades;
 
-
 import com.antonio.SistemadeAgendamentodeConsultas.model.abstratos.Pessoa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
